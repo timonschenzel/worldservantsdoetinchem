@@ -1,0 +1,4 @@
+node_modules
+.env
+Mix.json
+npm-debug.log

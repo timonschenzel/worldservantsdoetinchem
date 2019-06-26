@@ -1,0 +1,12 @@
+{
+	"ignore": [
+		"Nodue/src/Frontend",
+		"node_modules",
+		"public",
+		"resources",
+		"storage",
+	 	"app/http/controllers",
+	 	"database/database.sqlite-journal",
+	 	"database/database.sqlite"
+	]
+}
