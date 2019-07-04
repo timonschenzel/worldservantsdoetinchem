@@ -1,8 +1,10 @@
 Route.get('/', 'PagesController@home');
-Route.get('/foo', 'PagesController@foo');
-Route.get('/bar', 'PagesController@bar');
+
+Route.get('/wie-wij-zijn', 'AboutController@index');
 
 Route.get(`/{pageLanguage}`, 'PagesController@show');
+
+
 
 // (async () => {
 // 	let menuItemIds = [];

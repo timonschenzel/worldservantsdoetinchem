@@ -76,7 +76,7 @@ module.exports = class Request
 		for (var dependencyName in dependencies) {
 			dependency = dependencies[dependencyName];
 			if (dependency != null && typeof dependency == 'object' && is_instanceof(dependency.constructor, Model) && parameters[dependencyName]) {
-				parameters[dependencyName] = await dependency.find(parameters[dependencyName], 'uri');
+				parameters[dependencyName] = await dependency.find(parameters[dependencyName], dependency.routeKeyName);
 			}
 		}
 

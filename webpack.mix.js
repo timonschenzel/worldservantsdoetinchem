@@ -1,4 +1,5 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,7 +14,12 @@ let mix = require('laravel-mix');
 
 mix.setPublicPath('public')
 	.js('Nodue/src/Frontend/app.js', 'public/js')
-	.sass('resources/assets/sass/app.sass', 'public/css');
+	.sass('resources/assets/sass/app.scss', 'public/css')
+	.options({
+		processCssUrls: false,
+		postCss: [ tailwindcss('tailwind.config.js') ],
+	});
+	// .sass('resources/assets/sass/app.sass', 'public/css');
 
 // Full API
 // mix.js(src, output);

@@ -1,13 +1,26 @@
 module.exports = {
 	template: `
-		<li :class="{'is-active': isActive }"><a :href="href">{{text}}</a></li>
+		<li :class="{'is-active': isActive }"><a :href="parsedHref">{{text}}</a></li>
 	`,
 	
 	props: ['text', 'href'],
 
+	data()
+	{
+		let parsedHref = this.href;
+		if (! parsedHref.startsWith('/')) {
+			parsedHref = `/${parsedHref}`;
+		}
+
+		return {
+			parsedHref,
+		};
+	},
+
 	computed: {
-		isActive() {
-			return this.href == this.$root.activePageUri;
+		isActive()
+		{
+			return this.parsedHref == this.$root.activePageUri;
 		}
 	}
 };

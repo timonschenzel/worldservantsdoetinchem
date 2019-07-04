@@ -1,5 +1,10 @@
 module.exports = class PageLanguage extends Model
 {
+    get routeKeyName()
+    {
+        return 'uri';
+    }
+
     async find(id, field = 'page_language_id')
     {
         return await graphqlClient.request(`

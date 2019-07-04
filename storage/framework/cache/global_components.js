@@ -10,22 +10,54 @@ module.exports = {'n-hello': {
 		<div class="tabs">
 			<ul>
 				<n-nav-item href="/" text="Homepage"></n-nav-item>
-				<n-nav-item href="/foo" text="Foo"></n-nav-item>
-				<n-nav-item href="/bar" text="Bar"></n-nav-item>
 		    	<n-nav-item v-for="item in items" :href="item.uri" :text="item.menu_name" :key="item.uri"></n-nav-item>
 		    </ul>
 		</div>
 	`,
 },'n-nav-item': {
 	template: `
-		<li :class="{'is-active': isActive }"><a :href="href">{{text}}</a></li>
+		<li :class="{'is-active': isActive }"><a :href="parsedHref">{{text}}</a></li>
 	`,
 	
 	props: ['text', 'href'],
 
+	data()
+	{
+		let parsedHref = this.href;
+		if (! parsedHref.startsWith('/')) {
+			parsedHref = `/${parsedHref}`;
+		}
+
+		return {
+			parsedHref,
+		};
+	},
+
 	computed: {
-		isActive() {
-			return this.href == this.$root.activePageUri;
+		isActive()
+		{
+			return this.parsedHref == this.$root.activePageUri;
+		}
+	}
+},'n-person': {
+	template: `
+		<div class="max-w-sm rounded overflow-hidden shadow-lg">
+			<img class="w-full" :src="person.photo" :alt="person.name">
+			<div class="px-6 py-4">
+			<div class="font-bold text-xl mb-2">{{ person.name }}</div>
+				<p class="text-gray-700 text-base">
+					{{ person.name }}
+				</p>
+			</div>
+		</div>
+	`,
+	
+	props: ['person'],
+
+	computed: {
+		backgroundCss()
+		{
+			return `background-image: url('${this.person.photo}')`;
 		}
 	}
 },'n-test': {
