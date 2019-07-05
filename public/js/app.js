@@ -33805,7 +33805,7 @@ module.exports = {
     }
   },
   'n-person': {
-    template: "\n\t\t<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">\n\t\t\t<img class=\"w-full\" :src=\"person.photo\" :alt=\"person.name\">\n\t\t\t<div class=\"px-6 py-4\">\n\t\t\t<div class=\"font-bold text-xl mb-2\">{{ person.name }}</div>\n\t\t\t\t<p class=\"text-gray-700 text-base\">\n\t\t\t\t\t{{ person.name }}\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t",
+    template: "\n\t\t<div class=\"rounded overflow-hidden shadow-lg\">\n\t\t\t<img class=\"w-full\" :src=\"person.photo\" :alt=\"person.name\">\n\t\t\t<div class=\"px-6 py-4\">\n\t\t\t<div class=\"font-bold text-xl mb-2\">{{ person.name }}</div>\n\t\t\t\t<p class=\"text-gray-700 text-base\">\n\t\t\t\t\t{{ person.name }}\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t",
     props: ['person'],
     computed: {
       backgroundCss: function backgroundCss() {
@@ -33843,8 +33843,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Timon\code\worldservantsdoetinchem\Nodue\src\Frontend\app.js */"./Nodue/src/Frontend/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Timon\code\worldservantsdoetinchem\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /Users/Timon/Projects/worldservantsdoetinchem/Nodue/src/Frontend/app.js */"./Nodue/src/Frontend/app.js");
+module.exports = __webpack_require__(/*! /Users/Timon/Projects/worldservantsdoetinchem/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ }),
