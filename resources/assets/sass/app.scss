@@ -4,4 +4,26 @@
 
 @tailwind utilities;
 
-@import "../../../node_modules/bulma/bulma"
+.is-active {
+    @apply inline-block py-2 px-4 text-black font-bold no-underline;
+}
+
+.is-inactive {
+    @apply inline-block text-black no-underline py-2 px-4;
+}
+
+div.page-content span, div.page-content p, div.page-content div {
+    font-family: inherit !important;
+    @apply text-gray-600 mb-8 text-base text-gray-600;
+}
+
+@media only screen and (max-width: 618px) {
+    .person {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+  }
+
+@import "./progress-bar";
+
+@import "../../../node_modules/bulma/bulma";

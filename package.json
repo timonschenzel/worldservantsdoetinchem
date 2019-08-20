@@ -43,7 +43,6 @@
         "chokidar": "^1.6.1",
         "collect.js": "^3.1.2",
         "concurrently": "^3.6.1",
-        "counsel": "file:../counsel",
         "deepmerge": "^1.5.2",
         "diff": "^3.5.0",
         "dotenv": "^4.0.0",

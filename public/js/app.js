@@ -230,7 +230,7 @@ function () {
   }, {
     key: "mapAnchorElements",
     value: function mapAnchorElements() {
-      $(document).on('click', 'a', function (e) {
+      $(document).on('click', 'a:not([external]):not([target="_blank"])', function (e) {
         e.preventDefault();
         var url = $(e.target).attr('href');
         history.pushState({
@@ -320,7 +320,8 @@ function () {
           vm.$data.activePageUri = response.url;
         } else {
           $('#app').html(response);
-        }
+        } // window.scrollTo(0, 0);
+
       });
     }
   }, {
@@ -845,14 +846,16 @@ module.exports = function(obj, fn){
   !*** ./node_modules/component-emitter/index.js ***!
   \*************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 
 /**
  * Expose `Emitter`.
  */
 
-module.exports = Emitter;
+if (true) {
+  module.exports = Emitter;
+}
 
 /**
  * Initialize a new `Emitter`.
@@ -891,7 +894,7 @@ function mixin(obj) {
 Emitter.prototype.on =
 Emitter.prototype.addEventListener = function(event, fn){
   this._callbacks = this._callbacks || {};
-  (this._callbacks[event] = this._callbacks[event] || [])
+  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
     .push(fn);
   return this;
 };
@@ -907,11 +910,8 @@ Emitter.prototype.addEventListener = function(event, fn){
  */
 
 Emitter.prototype.once = function(event, fn){
-  var self = this;
-  this._callbacks = this._callbacks || {};
-
   function on() {
-    self.off(event, on);
+    this.off(event, on);
     fn.apply(this, arguments);
   }
 
@@ -943,12 +943,12 @@ Emitter.prototype.removeEventListener = function(event, fn){
   }
 
   // specific event
-  var callbacks = this._callbacks[event];
+  var callbacks = this._callbacks['$' + event];
   if (!callbacks) return this;
 
   // remove all handlers
   if (1 == arguments.length) {
-    delete this._callbacks[event];
+    delete this._callbacks['$' + event];
     return this;
   }
 
@@ -975,7 +975,7 @@ Emitter.prototype.removeEventListener = function(event, fn){
 Emitter.prototype.emit = function(event){
   this._callbacks = this._callbacks || {};
   var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks[event];
+    , callbacks = this._callbacks['$' + event];
 
   if (callbacks) {
     callbacks = callbacks.slice(0);
@@ -997,7 +997,7 @@ Emitter.prototype.emit = function(event){
 
 Emitter.prototype.listeners = function(event){
   this._callbacks = this._callbacks || {};
-  return this._callbacks[event] || [];
+  return this._callbacks['$' + event] || [];
 };
 
 /**
@@ -1187,7 +1187,7 @@ module.exports.parser = __webpack_require__(/*! engine.io-parser */ "./node_modu
  */
 
 var transports = __webpack_require__(/*! ./transports/index */ "./node_modules/engine.io-client/lib/transports/index.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/engine.io-client/node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 var debug = __webpack_require__(/*! debug */ "./node_modules/engine.io-client/node_modules/debug/browser.js")('engine.io-client:socket');
 var index = __webpack_require__(/*! indexof */ "./node_modules/indexof/index.js");
 var parser = __webpack_require__(/*! engine.io-parser */ "./node_modules/engine.io-parser/lib/browser.js");
@@ -1937,7 +1937,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
  */
 
 var parser = __webpack_require__(/*! engine.io-parser */ "./node_modules/engine.io-parser/lib/browser.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/engine.io-client/node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 
 /**
  * Module exports.
@@ -2414,7 +2414,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var XMLHttpRequest = __webpack_require__(/*! xmlhttprequest-ssl */ "./node_modules/engine.io-client/lib/xmlhttprequest.js");
 var Polling = __webpack_require__(/*! ./polling */ "./node_modules/engine.io-client/lib/transports/polling.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/engine.io-client/node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 var inherit = __webpack_require__(/*! component-inherit */ "./node_modules/component-inherit/index.js");
 var debug = __webpack_require__(/*! debug */ "./node_modules/engine.io-client/node_modules/debug/browser.js")('engine.io-client:polling-xhr');
 
@@ -3436,180 +3436,6 @@ module.exports = function (opts) {
 };
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/engine.io-client/node_modules/component-emitter/index.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/engine.io-client/node_modules/component-emitter/index.js ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * Expose `Emitter`.
- */
-
-if (true) {
-  module.exports = Emitter;
-}
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
-
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
-
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
-      break;
-    }
-  }
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
-
 
 /***/ }),
 
@@ -17362,7 +17188,7 @@ exports.Socket = __webpack_require__(/*! ./socket */ "./node_modules/socket.io-c
 
 var eio = __webpack_require__(/*! engine.io-client */ "./node_modules/engine.io-client/index.js");
 var Socket = __webpack_require__(/*! ./socket */ "./node_modules/socket.io-client/lib/socket.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/socket.io-client/node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 var parser = __webpack_require__(/*! socket.io-parser */ "./node_modules/socket.io-parser/index.js");
 var on = __webpack_require__(/*! ./on */ "./node_modules/socket.io-client/lib/on.js");
 var bind = __webpack_require__(/*! component-bind */ "./node_modules/component-bind/index.js");
@@ -17967,7 +17793,7 @@ function on (obj, ev, fn) {
  */
 
 var parser = __webpack_require__(/*! socket.io-parser */ "./node_modules/socket.io-parser/index.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/socket.io-client/node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 var toArray = __webpack_require__(/*! to-array */ "./node_modules/to-array/index.js");
 var on = __webpack_require__(/*! ./on */ "./node_modules/socket.io-client/lib/on.js");
 var bind = __webpack_require__(/*! component-bind */ "./node_modules/component-bind/index.js");
@@ -18468,180 +18294,6 @@ function url (uri, loc) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/socket.io-client/node_modules/component-emitter/index.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/socket.io-client/node_modules/component-emitter/index.js ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * Expose `Emitter`.
- */
-
-if (true) {
-  module.exports = Emitter;
-}
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
-
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
-
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
-      break;
-    }
-  }
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
-
 
 /***/ }),
 
@@ -19372,7 +19024,7 @@ exports.removeBlobs = function(data, callback) {
 
 var debug = __webpack_require__(/*! debug */ "./node_modules/socket.io-parser/node_modules/debug/browser.js")('socket.io-parser');
 var json = __webpack_require__(/*! json3 */ "./node_modules/json3/lib/json3.js");
-var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
+var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/socket.io-parser/node_modules/component-emitter/index.js");
 var binary = __webpack_require__(/*! ./binary */ "./node_modules/socket.io-parser/binary.js");
 var isBuf = __webpack_require__(/*! ./is-buffer */ "./node_modules/socket.io-parser/is-buffer.js");
 
@@ -19795,6 +19447,181 @@ function isBuf(obj) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/socket.io-parser/node_modules/component-emitter/index.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/socket.io-parser/node_modules/component-emitter/index.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * Expose `Emitter`.
+ */
+
+module.exports = Emitter;
+
+/**
+ * Initialize a new `Emitter`.
+ *
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on =
+Emitter.prototype.addEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks[event] = this._callbacks[event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  var self = this;
+  this._callbacks = this._callbacks || {};
+
+  function on() {
+    self.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  on.fn = fn;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off =
+Emitter.prototype.removeListener =
+Emitter.prototype.removeAllListeners =
+Emitter.prototype.removeEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+
+  // all
+  if (0 == arguments.length) {
+    this._callbacks = {};
+    return this;
+  }
+
+  // specific event
+  var callbacks = this._callbacks[event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks[event];
+    return this;
+  }
+
+  // remove specific handler
+  var cb;
+  for (var i = 0; i < callbacks.length; i++) {
+    cb = callbacks[i];
+    if (cb === fn || cb.fn === fn) {
+      callbacks.splice(i, 1);
+      break;
+    }
+  }
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter}
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks[event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks[event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
 
 /***/ }),
 
@@ -20342,18 +20169,15 @@ function plural(ms, n, name) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
 var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
 exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
 };
 exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
 };
 exports.clearTimeout =
 exports.clearInterval = function(timeout) {
@@ -20368,7 +20192,7 @@ function Timeout(id, clearFn) {
 }
 Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
+  this._clearFn.call(window, this._id);
 };
 
 // Does not start the time, just sets up the members needed.
@@ -20396,17 +20220,9 @@ exports._unrefActive = exports.active = function(item) {
 
 // setimmediate attaches itself to the global object
 __webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
+exports.setImmediate = setImmediate;
+exports.clearImmediate = clearImmediate;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -33777,15 +33593,89 @@ window.vm = new Vue({
 /***/ (function(module, exports) {
 
 module.exports = {
-  'n-hello': {
-    template: "\n\t\t<div style=\"color: green;\">Hello</div>\n\t"
+  'n-heading': {
+    template: "\n\t\t<div>\n\t\t\t<h1 class=\"w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800\"><slot></slot></h1>\n\t\t\t<div class=\"w-full mb-8\"><div class=\"h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t\"></div></div>\n\t\t</div>\n\t"
   },
   'n-nav': {
     props: ['items'],
-    template: "\n\t\t<div class=\"tabs\">\n\t\t\t<ul>\n\t\t\t\t<n-nav-item href=\"/\" text=\"Homepage\"></n-nav-item>\n\t\t    \t<n-nav-item v-for=\"item in items\" :href=\"item.uri\" :text=\"item.menu_name\" :key=\"item.uri\"></n-nav-item>\n\t\t    </ul>\n\t\t</div>\n\t"
+    template: "\n\t\t<div ref=\"header\" class=\"fixed w-full z-30 top-0 text-white\" :class=\"headerStateClassList.join(' ')\">\n\t\t\t<n-progress-bar></n-progress-bar>\n\n\t\t\t<div class=\"w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2 pb-6\">\n\t\t\t\t\t\n\t\t\t\t<div class=\"pl-4 flex items-center\">\n\t\t\t\t\t<a class=\"toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl\" href=\"/\">\n\t\t\t\t\t\t<img src=\"images/worldservants-logo-doetinchem.png\" style=\"height: 50px;\" />\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\n\t\t\t\t<div class=\"lg:hidden pr-4\">\n\t\t\t\t\t<button id=\"nav-toggle\" class=\"flex items-center px-3 py-4 border rounded text-green-light border-green-light appearance-none focus:outline-none\">\n\t\t\t\t\t\t<svg class=\"fill-current h-3 w-3\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><title>Menu</title><path d=\"M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z\"/></svg>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\n\t\t\t\t<div :class=\"navContentStateClassList.join(' ')\" class=\"w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20\" id=\"nav-content\">\n\t\t\t\t\t<ul class=\"list-reset lg:flex justify-end flex-1 items-center\">\n\n\t\t\t\t\t\t<n-nav-item href=\"/\" text=\"Home\"></n-nav-item>\n\n\t\t\t\t\t\t<n-nav-item v-for=\"item in items\" :href=\"item.uri\" :text=\"item.menu_name\" :key=\"item.uri\"></n-nav-item>\n\n\t\t\t\t\t</ul>\n\t\t\t\t\t<a id=\"navAction\" href=\"/doneren\" :class=\"navActionStateClassList.join(' ')\" class=\"mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 inline-block\">Doneren</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t\n\t\t\t<hr class=\"border-b border-gray-100 opacity-25 my-0 py-0\" />\n\t\t</div>\n\t",
+    data: function data() {
+      return {
+        headerStateClassList: [],
+        navActionStateClassList: [],
+        navContentStateClassList: ['hidden']
+      };
+    },
+    created: function created() {
+      var scrollpos = window.scrollY;
+      var vm = this;
+      document.addEventListener('scroll', function () {
+        vm.headerStateClassList = [];
+        vm.navActionStateClassList = [];
+        /*Apply classes for slide in bar*/
+
+        scrollpos = window.scrollY;
+
+        if (scrollpos > 10) {
+          vm.headerStateClassList.push('bg-white');
+          vm.navActionStateClassList.push('gradient');
+          vm.navActionStateClassList.push('text-white');
+          vm.headerStateClassList.push('shadow');
+          vm.navContentStateClassList.push('bg-white');
+        } else {
+          vm.navActionStateClassList.push('bg-white');
+          vm.navActionStateClassList.push('text-gray-800');
+          vm.navContentStateClassList.push('bg-gray-100');
+        }
+      });
+      /*Toggle dropdown list*/
+
+      var navMenuDiv = document.getElementById("nav-content");
+      var navMenu = document.getElementById("nav-toggle");
+      document.onclick = check;
+
+      function check(e) {
+        var target = e && e.target || event && event.srcElement; //Nav Menu
+
+        if (!checkParent(target, navMenuDiv)) {
+          // click NOT on the menu
+          if (checkParent(target, navMenu)) {
+            // click on the link
+            if (vm.navContentStateClassList.includes('hidden')) {
+              vm.navContentStateClassList = vm.navContentStateClassList.filter(function (item) {
+                return item !== 'hidden';
+              });
+            } else {
+              vm.navContentStateClassList.push('hidden');
+            }
+          } else {
+            // click both outside link and outside menu, hide menu
+            if (vm.navContentStateClassList.includes('hidden')) {
+              vm.navContentStateClassList = vm.navContentStateClassList.filter(function (item) {
+                return item !== 'hidden';
+              });
+            } else {
+              vm.navContentStateClassList.push('hidden');
+            }
+          }
+        }
+      }
+
+      function checkParent(t, elm) {
+        while (t.parentNode) {
+          if (t == elm) {
+            return true;
+          }
+
+          t = t.parentNode;
+        }
+
+        return false;
+      }
+    }
   },
   'n-nav-item': {
-    template: "\n\t\t<li :class=\"{'is-active': isActive }\"><a :href=\"parsedHref\">{{text}}</a></li>\n\t",
+    template: "\n\t\t<li>\n\t\t\t<a :class=\"[isActive ? 'is-active' : 'is-inactive']\" class=\"hover:text-gray-800 hover:text-underline\" :href=\"parsedHref\">{{text}}</a>\n\t\t</li>\n\t",
     props: ['text', 'href'],
     data: function data() {
       var parsedHref = this.href;
@@ -33805,7 +33695,7 @@ module.exports = {
     }
   },
   'n-person': {
-    template: "\n\t\t<div class=\"rounded overflow-hidden shadow-lg\">\n\t\t\t<img class=\"w-full\" :src=\"person.photo\" :alt=\"person.name\">\n\t\t\t<div class=\"px-6 py-4\">\n\t\t\t<div class=\"font-bold text-xl mb-2\">{{ person.name }}</div>\n\t\t\t\t<p class=\"text-gray-700 text-base\">\n\t\t\t\t\t{{ person.name }}\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t",
+    template: "\n\t\t<div class=\"rounded overflow-hidden shadow-lg\">\n\t\t\t<img class=\"w-full\" :src=\"person.photo\" :alt=\"person.name\">\n\t\t\t<div class=\"px-6 py-4\">\n\t\t\t<div class=\"font-bold text-xl mb-2 text-white\">{{ person.name }}</div>\n\t\t\t\t<p class=\"text-white text-base\">\n\t\t\t\t\t{{ person.name }}\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t",
     props: ['person'],
     computed: {
       backgroundCss: function backgroundCss() {
@@ -33813,9 +33703,30 @@ module.exports = {
       }
     }
   },
-  'n-test': {
-    template: "\n\t\t<div style=\"color: green;\"><slot></slot></div>\n\t",
-    props: ['text']
+  'n-progress-bar': {
+    template: "\n\t<div id=\"thermometer\" class=\"mb-4\" style=\"background: none;\">\n\t\t<div class=\"track bg-white\">\n\t\t\t<div class=\"goal\" style=\"display: none;\">\n\t\t\t\t<div class=\"amount\">{{currentAmountFormatted}}</div>\n\t\t\t</div>\n\t\t\t<div class=\"progress_container bg-white\" style=\"width: 100%;\">\n\t\t\t\t<div class=\"progress\" :style=\"progressBarStyle\">\n\t\t\t\t\t<div style=\"float: right;\" class=\"amount\">{{progressPercentage}}%</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"amount amount_number text-right\" :style=\"progressBarStyle\">{{currentAmountFormatted}}</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t",
+    data: function data() {
+      return {
+        current: 4000,
+        target: 80000
+      };
+    },
+    computed: {
+      progressBarStyle: function progressBarStyle() {
+        return "width: ".concat(this.progressPercentage, "%;");
+      },
+      progressPercentage: function progressPercentage() {
+        return this.current / this.target * 100;
+      },
+      currentAmountFormatted: function currentAmountFormatted() {
+        var formatter = new Intl.NumberFormat('nl-NL', {
+          style: 'currency',
+          currency: 'EUR',
+          minimumFractionDigits: 2
+        });
+        return formatter.format(this.current);
+      }
+    }
   }
 };
 
@@ -33829,9 +33740,9 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
-  'app-layout': "<div>\n\t<section class=\"hero is-primary is-bold\">\n\t\t<div class=\"hero-body\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h1 class=\"title\">\n\t\t\t\t\t<slot name=\"title\">{{ title }}</slot>\n\t\t\t\t</h1>\n\t\t\t\t<h2 class=\"subtitle\">\n\t\t\t\t\t<slot name=\"slogan\">{{ slogan }}</slot>\n\t\t\t\t</h2>\n\t\t\t</div>\n\t\t</div>\n\t</section>\n\n\t<div class=\"container\">\n\n\t\t<slot name=\"nav\">\n\t\t\t<n-nav :items=\"items\"></n-nav>\n\t\t</slot>\n\n\t\t<slot></slot>\n\n\t\t<footer-layout></footer-layout>\n\t</div>\n</div>",
-  'footer-layout': "<footer class=\"footer\">\n\t<div class=\"container\">\n\t\t<div class=\"content has-text-centered\">\n\t\t\t<p>\n\t\t\t\t<strong>World Servants Doetinchem</strong>\n\t\t\t</p>\n\t\t</div>\n\t</div>\n</footer>",
-  'homepage-layout': "<div>\n\t<section class=\"hero is-primary\">\n\t\t<div class=\"hero-body\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h1 class=\"title\">\n\t\t\t\t\t<slot name=\"title\">{{ title || 'Default title' }}</slot>\n\t\t\t\t</h1>\n\t\t\t\t<h2 class=\"subtitle\">\n\t\t\t\t\t<slot name=\"slogan\">{{ slogan || 'Default slogan' }}</slot>\n\t\t\t\t</h2>\n\t\t\t</div>\n\t\t</div>\n\t</section>\n\n\t<div class=\"container\">\n\n\t\t<slot name=\"nav\">\n\t\t\t<n-nav :items=\"items\"></n-nav>\n\t\t</slot>\n\n\t\t<slot></slot>\n\t\t\n\t\t<footer-layout></footer-layout>\n\t</div>\n</div>"
+  'app-layout': "<div>\n\t<!--Nav-->\n\t<slot name=\"nav\">\n\t\t<n-nav :items=\"items\"></n-nav>\n\t</slot>\n    \n    <!--Hero-->\n\t<slot name=\"hero\"></slot>\n    \n\t<section class=\"bg-white py-8\">\n\t\t<div class=\"container max-w-5xl mx-auto px-8 text-black\">\n\t\t\t<slot></slot>\n\t\t</div>\n\t</section>\n\t\n\n    <!-- Change the colour #f8fafc to match the previous section colour -->\n    <svg class=\"wave-top\" viewBox=\"0 0 1439 147\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n        <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n            <g transform=\"translate(-1.000000, -14.000000)\" fill-rule=\"nonzero\">\n                <g class=\"wave\" fill=\"#ffffff\">\n                    <path d=\"M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z\"></path>\n                </g>\n                <g transform=\"translate(1.000000, 15.000000)\" fill=\"#FFFFFF\">\n                    <g transform=\"translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) \">\n                        <path d=\"M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496\" opacity=\"0.100000001\"></path>\n                        <path d=\"M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z\" opacity=\"0.100000001\"></path>\n                        <path d=\"M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z\" opacity=\"0.200000003\"></path>\n                    </g>\n                </g>\n            </g>\n        </g>\n    </svg>\n    \n    <section class=\"container mx-auto text-center py-6 mb-12\">\n    \n        <h1 class=\"w-full my-2 text-5xl font-bold leading-tight text-center text-white\">Doneren</h1>\n        <div class=\"w-full mb-4\">\t\n            <div class=\"h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t\"></div>\n        </div>\n    \n        <h3 class=\"my-4 text-3xl leading-tight\">Help de cacoboeren in Ecuador</h3>\t\n    \n        <a class=\"mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg inline-block\" href=\"/doneren\">Steun ons</a>\n            \n    </section>\n\n\t<footer-layout></footer-layout>\n</div>",
+  'footer-layout': "<footer class=\"bg-white\">\n\t<div class=\"container mx-auto  px-8\">\n\n\t\t<div class=\"w-full flex flex-col md:flex-row py-6\">\n\t\t\t\t\n\t\t\t<div class=\"flex-1 mb-6\">\n\t\t\t\n\t\t\t\t<a class=\"text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl\"  href=\"#\"> \n\t\t\t\t\t<img src=\"images/worldservants-logo-doetinchem.png\" style=\"height: 120px;\" />\n\t\t\t\t\t\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\n\t\t\n\t\t\t<div class=\"flex-1\">\n\t\t\t\t<p class=\"uppercase text-gray-500 md:mb-6\">Project</p>\n\t\t\t\t<ul class=\"list-reset mb-6\">\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"/ecuador\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Ecuador</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"/cacao\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Cacao</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"/fairtrade\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Fairtrade</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div class=\"flex-1\">\n\t\t\t\t<p class=\"uppercase text-gray-500 md:mb-6\">World Servants</p>\n\t\t\t\t<ul class=\"list-reset mb-6\">\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"https://www.worldservants.nl\" target=\"_blank\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">World Servants</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"https://www.worldservants.nl/doetinchem\" target=\"_blank\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Actieplatform</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div class=\"flex-1\">\n\t\t\t\t<p class=\"uppercase text-gray-500 md:mb-6\">Social</p>\n\t\t\t\t<ul class=\"list-reset mb-6\">\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"https://www.facebook.com/WorldServantsDoetinchem/\" target=\"_blank\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Facebook</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t\t<div class=\"flex-1\">\n\t\t\t\t<p class=\"uppercase text-gray-500 md:mb-6\">Over ons</p>\n\t\t\t\t<ul class=\"list-reset mb-6\">\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"/wie-wij-zijn\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Wie wij zijn</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"mt-2 inline-block mr-2 md:block md:mr-0\">\n\t\t\t\t\t\t<a href=\"/contact\" class=\"no-underline hover:underline text-gray-800 hover:text-orange-500\">Contact</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</footer>",
+  'homepage-layout': "<div>\n\t<!--Nav-->\n\t<slot name=\"nav\">\n\t\t<n-nav :items=\"items\"></n-nav>\n\t</slot>\n    \n    <!--Hero-->\n\t<slot name=\"hero\"></slot>\n    \n    <div class=\"relative -mt-12 lg:-mt-24\">\n        <svg viewBox=\"0 0 1428 174\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n        <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g transform=\"translate(-2.000000, 44.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\">\n        <path d=\"M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496\" opacity=\"0.100000001\"></path>\n        <path d=\"M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z\" opacity=\"0.100000001\"></path>\n        <path d=\"M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z\" id=\"Path-4\" opacity=\"0.200000003\"></path>\n        </g>\n        <g transform=\"translate(-4.000000, 76.000000)\" fill=\"#FFFFFF\" fill-rule=\"nonzero\">\n        <path d=\"M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z\"></path>\n        </g>\n        </g>\n        </svg>\n    </div>\n    \n\t<slot name=\"main-information\"></slot>\n\n\t<slot name=\"previous-projects\"></slot>\n    \n\t<slot name=\"actions\"></slot>\n\n    <!-- Change the colour #f8fafc to match the previous section colour -->\n    <svg class=\"wave-top\" viewBox=\"0 0 1439 147\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n        <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n            <g transform=\"translate(-1.000000, -14.000000)\" fill-rule=\"nonzero\">\n                <g class=\"wave\" fill=\"#f8fafc\">\n                    <path d=\"M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z\"></path>\n                </g>\n                <g transform=\"translate(1.000000, 15.000000)\" fill=\"#FFFFFF\">\n                    <g transform=\"translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) \">\n                        <path d=\"M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496\" opacity=\"0.100000001\"></path>\n                        <path d=\"M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z\" opacity=\"0.100000001\"></path>\n                        <path d=\"M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z\" opacity=\"0.200000003\"></path>\n                    </g>\n                </g>\n            </g>\n        </g>\n    </svg>\n    \n    <section class=\"container mx-auto text-center py-6 mb-12\">\n    \n        <h1 class=\"w-full my-2 text-5xl font-bold leading-tight text-center text-white\">Doneren</h1>\n        <div class=\"w-full mb-4\">\t\n            <div class=\"h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t\"></div>\n        </div>\n    \n        <h3 class=\"my-4 text-3xl leading-tight\">Help de cacoboeren in Ecuador</h3>\t\n    \n        <a class=\"mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg inline-block\" href=\"/doneren\">Steun ons</a>\n            \n    </section>\n\n\t<footer-layout></footer-layout>\n</div>"
 };
 
 /***/ }),
@@ -33843,8 +33754,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/Timon/Projects/worldservantsdoetinchem/Nodue/src/Frontend/app.js */"./Nodue/src/Frontend/app.js");
-module.exports = __webpack_require__(/*! /Users/Timon/Projects/worldservantsdoetinchem/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /home/timon/code/worldservantsdoetinchem/Nodue/src/Frontend/app.js */"./Nodue/src/Frontend/app.js");
+module.exports = __webpack_require__(/*! /home/timon/code/worldservantsdoetinchem/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ }),

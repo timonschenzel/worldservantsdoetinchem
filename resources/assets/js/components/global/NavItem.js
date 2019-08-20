@@ -1,6 +1,8 @@
 module.exports = {
 	template: `
-		<li :class="{'is-active': isActive }"><a :href="parsedHref">{{text}}</a></li>
+		<li>
+			<a :class="[isActive ? 'is-active' : 'is-inactive']" class="hover:text-gray-800 hover:text-underline" :href="parsedHref">{{text}}</a>
+		</li>
 	`,
 	
 	props: ['text', 'href'],

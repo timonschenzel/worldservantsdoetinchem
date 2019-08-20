@@ -3,8 +3,8 @@ module.exports = {
 		<div class="rounded overflow-hidden shadow-lg">
 			<img class="w-full" :src="person.photo" :alt="person.name">
 			<div class="px-6 py-4">
-			<div class="font-bold text-xl mb-2">{{ person.name }}</div>
-				<p class="text-gray-700 text-base">
+			<div class="font-bold text-xl mb-2 text-white">{{ person.name }}</div>
+				<p class="text-white text-base">
 					{{ person.name }}
 				</p>
 			</div>

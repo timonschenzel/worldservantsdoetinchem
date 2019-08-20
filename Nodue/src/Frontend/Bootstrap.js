@@ -166,7 +166,7 @@ module.exports = class Bootstrap
 	 */
 	mapAnchorElements()
 	{
-		$(document).on('click', 'a', e => {
+		$(document).on('click', 'a:not([external]):not([target="_blank"])', e => {
 			e.preventDefault();
 
 			let url = $(e.target).attr('href');
@@ -254,6 +254,8 @@ module.exports = class Bootstrap
 			} else {
 				$('#app').html(response);
 			}
+
+			// window.scrollTo(0, 0);
 		});
 	}
 

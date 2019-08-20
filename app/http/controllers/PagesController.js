@@ -27,17 +27,6 @@ module.exports = class PagesController extends Controller
 	async home()
 	{
 		return view('pages.home', {
-			showDiv: true,
-			title: 'Nodue',
-			slogan: 'This is great!',
-			text: 'Welcome World',
-			items: [
-				'Go to the store',
-				'Shopping?',
-				'Sleeping',
-			],
-			newItem: '',
-			shareWithLayout: false,
 			layoutData: {
 				title: 'World Servants Doetinchem',
 				slogan: 'Ecuador 2020',
