@@ -40,7 +40,7 @@ module.exports = class Bootstrap
 	initGraphQl()
 	{
 		const graphqlRequest = require('graphql-request');
-		global.graphqlClient = new graphqlRequest.GraphQLClient('http://localhost:4000/graphql', { headers: {} });
+		global.graphqlClient = new graphqlRequest.GraphQLClient('http://worldservantsdoetinchem.nl:4000/graphql', { headers: {} });
 	}
 
 	loadSugarModule()
