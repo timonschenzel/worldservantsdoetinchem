@@ -53,9 +53,8 @@ module.exports = {'app-layout': `<div>
 				
 			<div class="flex-1 mb-6">
 			
-				<a class="text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"> 
+				<a class="text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/"> 
 					<img src="images/worldservants-logo-doetinchem.png" style="height: 120px;" />
-					
 				</a>
 			</div>
 		
@@ -101,6 +100,22 @@ module.exports = {'app-layout': `<div>
 					</li>
 					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
 						<a href="/contact" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<div class="flex-1">
+				<ul class="list-reset mb-6">
+					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
+						<a href="http://www.anbi.nl/" target="_blank" title="ANBI - Algemeen Nut Beogende Instelling" class="no-underline hover:underline text-gray-800 hover:text-orange-500"><img src="/images/anbi-logo.png" style="height: 40px; margin-bottom: 10px;"></a>
+					</li>
+					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
+						<a href="http://www.cbf.nl/" target="_blank" title="CBF - Keur voor goede doelen" class="no-underline hover:underline text-gray-800 hover:text-orange-500"><img src="/images/cbf-logo.png" style="height: 60px; margin-top: -10px; margin-bottom: 10px;"></a>
+					</li>
+					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
+						<a href="http://www.worldservants.nl/" target="_blank" title="World Servants" class="no-underline hover:underline text-gray-800 hover:text-orange-500"><img style="height: 65px; margin-bottom: 10px;" src="/images/world-servants-logo.png"></a>
+					</li>
+					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
+						<a href="http://www.pgdoetinchem.nl/" target="_blank" title="Protestantse Gemeente Doetinchem" class="no-underline hover:underline text-gray-800 hover:text-orange-500"><img style="height: 50px; margin-bottom: 10px;" src="/images/pgd-logo.png"></a>
 					</li>
 				</ul>
 			</div>
@@ -164,7 +179,7 @@ module.exports = {'app-layout': `<div>
         <h3 class="my-4 text-3xl leading-tight">Help de cacoboeren in Ecuador</h3>	
     
         <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg inline-block" href="/doneren">Steun ons</a>
-            
+        
     </section>
 
 	<footer-layout></footer-layout>

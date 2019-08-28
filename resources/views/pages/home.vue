@@ -30,7 +30,7 @@
 					<div class="w-full sm:w-1/2 p-6 mt-16">
 						<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Bouwen aan verandering in Ecuador</h3>
 						<p class="text-gray-600 mb-8">
-							Onder het motto 'Bouwen aan verandering' gaat een groep uit Doetinchem op werkvakantie in Myanmar. De diaconie van de Protestantse Gemeente Doetinchem ondersteunt dit ontwikkelingswerkproject van de organisatie World Servants. Gemeenteleden zullen hier daadwerkelijk aan mee gaan doen. U kunt ons daarbij helpen!
+							Onder het motto ‘Bouwen aan verandering’ gaat een groep uit Doetinchem in de zomer van 2020 op werkvakantie in Ecuador. De groep gaat bouwen voor en met een coöperatie van cacaoboeren. De diaconie en gemeenteleden van de Protestantse Gemeente Doetinchem ondersteunt dit ontwikkelingsproject van de organisatie World Servants. U kunt daarbij helpen!
 						</p>
 						
 					</div>
@@ -82,7 +82,9 @@
 						<div class="align-middle">
 							<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Donaties</h3>
 							<p class="text-gray-600 mb-8">
-								Donacties om het project te steunen zijn uiteraard van harte welkom. Dit kan op rekeningnummer NL02 RABO 0337 3709 66 t.n.v. PGD World Servants (in Doetinchem).<br /><br />
+								Donaties om het project te steunen zijn van harte welkom.
+								Dit kan op rekeningnummer NL02 RABO 0337 3709 66 t.n.v. PGD World Servants.
+								Giften aan PDG World Servants dragen het keurmerk van ANBI en CBF en zijn aftrekbaar voor de inkomstenbelasting.<br /><br />
 							</p>
 						</div>
 					</div>
@@ -106,9 +108,9 @@
 					<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
 						<a href="http://www.doemyanmar.nl" target="_blank" class="flex flex-wrap no-underline hover:no-underline">
 							<h2 class="px-6 w-full my-2 text-3xl font-bold leading-tight text-gray-800">DoeMyanmar 2017</h2>
-							<div class="w-full font-bold text-xl text-gray-800 px-6 pt-4">Gebouwd aan verandering in Myanmar</div>
+							<div class="w-full font-bold text-xl text-gray-800 px-6 pt-4">Gebouwd aan verandering in Pakokku</div>
 							<p class="text-gray-800 text-base px-6 mb-5">
-								Onder het motto 'Bouwen aan verandering' is een groep uit Doetinchem op werkvakantie geweest in Myanmar. De diaconie van de Protestantse Gemeente Doetinchem ondersteunde dit ontwikkelingswerkproject van de organisatie World Servants.. 
+								Onder het motto ‘Bouwen aan verandering’ heeft een groep uit Doetinchem tijdens een werkvakantie gebouwd aan een gemeenschapshuis en enkele huisjes voor mensen met lepra. Een ontwikkelingsproject van World Servants. 
 							</p>
 						</a>
 					</div>
@@ -125,7 +127,7 @@
 							<h2 class="px-6 w-full my-2 text-3xl font-bold leading-tight text-gray-800">DoeMalawi 2013</h2>
 							<div class="w-full font-bold text-xl text-gray-800 px-6 pt-4">Gebouwd aan verandering in Echikangeni</div>
 							<p class="text-gray-800 text-base px-6 mb-5">
-								Onder het motto 'Bouwen aan jezelf door te bouwen voor een ander' ondersteunde de diaconie van de Protestantse Gemeente Doetinchem een ontwikkelingswerkproject van de organisatie World Servants. 
+								Onder het motto ‘Bouwen aan jezelf door te bouwen voor een ander’ heeft een groep uit Doetinchem tijdens een werkvakantie klaslokalen, een lerarenwoning en een girls changingsroom gebouwd. Een ontwikkelingproject van World Servants. 
 							</p>
 						</a>
 					</div>
@@ -152,10 +154,9 @@
 			
 			
 				
-				<div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
+				<div class="flex flex-wrap flex-col sm:flex-row pt-12 my-12 sm:my-4">
 					
-					
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
+					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
 						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
 							<div class="p-8 text-3xl font-bold text-center border-b-4">Tony's Chocolonely-repen</div>
 							<ul class="w-full text-center text-sm">
@@ -170,9 +171,7 @@
 						</div>
 					</div>
 					
-					
-					
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
+					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
 						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
 							<div class="p-8 text-3xl font-bold text-center border-b-4">ThuisVers.nl sponsoractie</div>
 							<ul class="w-full text-center text-sm">
@@ -187,8 +186,7 @@
 						</div>
 					</div>
 
-
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
+					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
 						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
 							<div class="p-8 text-3xl font-bold text-center border-b-4">Cacoabonen raden</div>
 							<ul class="w-full text-center text-sm">
@@ -203,6 +201,21 @@
 						</div>
 					</div>
 		
+					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
+						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
+							<div class="p-8 text-3xl font-bold text-center border-b-4">Stadsfeest Doetinchem</div>
+							<ul class="w-full text-center text-sm">
+								<li class="border-b py-4"><img class="m-auto" src="https://www.worldservants.nl/sites/default/files/styles/news-item/public/actieplatform_update_world_servants_doetinchem_presenteert_zich_tijdens_stadsfeest.jpg?itok=E-zp6KDs" style="height: 200px;"></li>
+							</ul>
+						</div>
+						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+							<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;0,00 <span class="text-base">opbrengst tot nu toe</span></div>
+							<div class="flex items-center justify-center">
+								<button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Meer informatie</button>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 				
 			</div>
