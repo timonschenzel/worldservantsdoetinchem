@@ -1,4 +1,41 @@
-module.exports = {'n-heading': {
+module.exports = {'n-case': {
+	template: `
+		<div>
+			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
+				<div class="p-8 text-3xl font-bold text-center border-b-4">{{ item.title }}</div>
+				<ul class="w-full text-center text-sm">
+					<li class="border-b py-4"><img class="m-auto" :src="'http://www.worldservantsdoetinchem.nl/images/cases/' + item.images[0].filename" style="height: 200px;"></li>
+					<li class="border-b py-4">{{ date }}</li>
+					<li class="border-b py-4">{{ item.location }}</li>
+				</ul>
+			</div>
+			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+				<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;{{ item.yield }} <span class="text-base">opbrengst tot nu toe</span></div>
+				<div class="flex items-center justify-center">
+					<a :href="'/acties/' + item.uri" class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Meer informatie</a>
+				</div>
+			</div>
+		</div>
+	`,
+	
+	props: ['item'],
+	
+	ready()
+	{
+		
+	},
+
+	computed: {
+		date()
+		{
+			const moment = require('moment');
+			let date = new Date(this.item.date).toISOString();
+			let day = moment(date).format('D-M-Y');
+			let time = moment(date).format('H:mm');
+			return `${day} - ${time}`;
+		}
+	}
+},'n-heading': {
 	template: `
 		<div>
 			<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"><slot></slot></h1>

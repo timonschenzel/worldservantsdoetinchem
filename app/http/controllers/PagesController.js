@@ -27,6 +27,7 @@ module.exports = class PagesController extends Controller
 	async home()
 	{
 		return view('pages.home', {
+			cases: await Case.inProgress(),
 			layoutData: {
 				title: 'World Servants Doetinchem',
 				slogan: 'Ecuador 2020',
