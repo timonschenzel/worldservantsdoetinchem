@@ -54,7 +54,7 @@ module.exports = {'app-layout': `<div>
 				<div class="flex-1 mb-6">
 				
 					<a class="text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/"> 
-						<img src="images/worldservants-logo-doetinchem.png" class="-ml-8" style="height: 120px;" />
+						<img src="/images/worldservants-logo-doetinchem.png" class="-ml-8" style="height: 120px;" />
 					</a>
 				</div>
 			

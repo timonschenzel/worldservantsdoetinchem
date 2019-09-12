@@ -2,6 +2,14 @@ Route.get('/', 'PagesController@home');
 
 Route.get('/wie-wij-zijn', 'AboutController@index');
 
+Route.get('/acties', 'CasesController@index');
+Route.get('/acties/{caseLanguage}', 'CasesController@show');
+
+Route.get('/nieuws', 'NewsController@index');
+Route.get('/nieuws/{newsItemLanguage}', 'NewsController@show');
+
+Route.get('/sponsoring', 'SponsorsController@index');
+
 Route.get(`/{pageLanguage}`, 'PagesController@show');
 
 

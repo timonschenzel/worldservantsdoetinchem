@@ -1,0 +1,6 @@
+{
+	created()
+	{
+		console.log('created');
+	},
+}

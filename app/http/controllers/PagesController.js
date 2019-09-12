@@ -1,33 +1,9 @@
 module.exports = class PagesController extends Controller
 {
-	// async init()
-	// {
-	// 	this.menuItems = await graphqlClient.request(`
-	// 	{
-	// 		page (sub_id: 0, level: 1, hide: 0) {
-	// 			page_id
-	// 			sub_id
-	// 			level
-	// 			hide
-	// 			position,
-	// 			languages {
-	// 				menu_name,
-	// 				uri
-	// 			}
-	// 		}
-	// 	}
-	// `);
-	// // console.log(this.menuItems);
-
-	// 	this.menuItems = this.menuItems.page.map(item => {
-	// 		return item.languages[0];
-	// 	});
-	// }
-
 	async home()
 	{
 		return view('pages.home', {
-			cases: await Case.inProgress(),
+			cases: await Case.all(),
 			layoutData: {
 				title: 'World Servants Doetinchem',
 				slogan: 'Ecuador 2020',

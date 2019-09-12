@@ -151,47 +151,9 @@
 				<div class="w-full mb-4">	
 					<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
 				</div>
-			
-			
 				
 				<div class="flex flex-wrap flex-col sm:flex-row pt-12 my-12 sm:my-4">
 					
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
-						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-							<div class="p-8 text-3xl font-bold text-center border-b-4">Tony's Chocolonely-repen</div>
-							<ul class="w-full text-center text-sm">
-								<li class="border-b py-4"><img class="m-auto" src="https://www.ecomondo.nl/wp-content/uploads/2017/11/tonys-chocolonely-repen.jpg" style="height: 200px;"></li>
-							</ul>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-							<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;315,08 <span class="text-base">opbrengst tot nu toe</span></div>
-						</div>
-					</div>
-					
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
-						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-							<div class="p-8 text-3xl font-bold text-center border-b-4">ThuisVers.nl sponsoractie</div>
-							<ul class="w-full text-center text-sm">
-								<li class="border-b py-4"><img class="m-auto" src="http://www.doemalawi.nl/images/cases/221362325070_thuisvers.png" style="height: 200px;"></li>
-							</ul>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-							<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;99,00 <span class="text-base">opbrengst tot nu toe</span></div>
-						</div>
-					</div>
-
-					<div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
-						<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-							<div class="p-8 text-3xl font-bold text-center border-b-4">Cacoabonen raden</div>
-							<ul class="w-full text-center text-sm">
-								<li class="border-b py-4"><img class="m-auto" src="https://www.vangeldernederland.nl/static/uploads/pictures/large/115338-cacao-fruit.jpg" style="height: 200px;"></li>
-							</ul>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-							<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;39,00 <span class="text-base">opbrengst tot nu toe</span></div>
-						</div>
-					</div>
-		
 					<div v-for="item in cases" class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
 						<case :item="item"></case>
 					</div>

@@ -31,6 +31,45 @@ module.exports = class Case extends Model
             }
       `);
     }
+    
+    async all()
+    {
+        let items = await graphqlClient.request(`
+            {
+                case {
+                    case_id
+                    yield
+                    date
+                    end_date
+                    location
+                    show_on_website
+                    pass
+                    languages {
+                        case_language_id
+                        case_id
+                        language_id
+                        title
+                        content
+                        uri
+                    }
+                    images {
+                        case_image_id
+                        case_id
+                        language_id
+                        filename
+                        position
+                    }
+                }
+            }
+      `);
+      
+      return items.case.map(item => {
+        let language = item.languages[0];
+        delete item.language;
+        
+        return {...item, ...language};
+      });
+    }
 
     async inProgress()
     {
@@ -62,7 +101,7 @@ module.exports = class Case extends Model
                 }
             }
       `);
-
+      
       return items.case.map(item => {
         let language = item.languages[0];
         delete item.language;

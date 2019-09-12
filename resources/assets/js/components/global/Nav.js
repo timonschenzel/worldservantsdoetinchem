@@ -10,7 +10,7 @@ module.exports = {
 					
 				<div class="pl-4 flex items-center">
 					<a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/">
-						<img src="images/worldservants-logo-doetinchem.png" style="height: 50px;" />
+						<img src="/images/worldservants-logo-doetinchem.png" style="height: 50px;" />
 					</a>
 				</div>
 		
