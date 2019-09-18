@@ -243,13 +243,17 @@ module.exports = {'n-case': {
 	}
 },'n-person': {
 	template: `
-		<div class="rounded overflow-hidden shadow-lg">
-			<img class="w-full" :src="person.photo" :alt="person.name">
-			<div class="px-6 py-4">
-			<div class="font-bold text-xl mb-2 text-white">{{ person.name }}</div>
-				<p class="text-white text-base">
-					{{ person.name }}
-				</p>
+		<div>
+			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden">
+				<div class="p-8 text-xl font-bold text-center">{{ person.name }}</div>
+				<ul class="w-full text-center text-sm">
+					<li><img class="w-full rounded-full py-2 px-4" :src="person.photo"></li>
+				</ul>
+			</div>
+			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden p-6">
+				<div class="flex items-center justify-center">
+					<a :href="person.sponsorUrl" target="_blank" class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">{{ person.sponsorText }}</a>
+				</div>
 			</div>
 		</div>
 	`,

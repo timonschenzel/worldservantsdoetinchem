@@ -12,6 +12,8 @@ module.exports = class PageLanguage extends Model
                 person {
                     name
                     photo
+                    sponsorUrl
+                    sponsorText
                 }
             }
       `);
@@ -24,6 +26,8 @@ module.exports = class PageLanguage extends Model
                 person(name: "${name}") {
                     name
                     photo
+                    sponsorUrl
+                    sponsorText
                 }
             }
       `);

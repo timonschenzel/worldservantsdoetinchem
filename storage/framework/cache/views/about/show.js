@@ -17,7 +17,7 @@ module.exports = `<app-layout>
 	<n-heading>{{page.title}}</n-heading>
 
 	<div class="flex flex-wrap mb-4">
-		<div class="person m-2" style="flex-grow: 1; min-width: 220px; max-width: 272px; background-color: #4bcfd2;" v-for="person in persons">
+		<div v-for="person in persons" class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1 p-1">
 			<n-person :person="person"></n-person>
 		</div>
 	</div>
