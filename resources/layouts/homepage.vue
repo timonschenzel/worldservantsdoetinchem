@@ -52,8 +52,7 @@
         <div class="w-full mb-4">	
             <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
-    
-        <h3 class="my-4 text-3xl leading-tight">Help de cacoboeren in Ecuador</h3>	
+        <h3 class="my-4 text-3xl leading-tight">Bouw mee aan verandering voor cacaoboeren in Ecuador,<br />steun World Servants Doetinchem</h3>
     
         <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg inline-block" href="/doneren">Steun ons</a>
         
