@@ -17,4 +17,9 @@
 	<heading>{{caseItem.title}}</heading>
 
 	<div class="page-content" v-html="caseItem.content"></div>
+	
+	<div class="w-full mb-8"><div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div></div>
+	<div>
+		<img v-for="image in caseItem.case.images" :src="'http://www.worldservantsdoetinchem.nl/images/cases/' + image.filename" style="width: 300px;" />
+	</div>
 </app-layout>

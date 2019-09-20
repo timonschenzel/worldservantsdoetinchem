@@ -2,7 +2,7 @@ module.exports = {
 	template: `
 		<div>
 			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-				<div class="p-8 text-3xl font-bold text-center border-b-4">{{ item.title }}</div>
+				<div class="p-8 text-xl font-bold text-center border-b-4">{{ item.title }}</div>
 				<ul class="w-full text-center text-sm">
 					<li class="border-b py-4"><img class="m-auto" :src="'http://www.worldservantsdoetinchem.nl/images/news/' + item.images[0].filename" style="height: 200px;"></li>
 					<li class="border-b py-4"><i class="far fa-calendar"></i> {{ day }}</li>
