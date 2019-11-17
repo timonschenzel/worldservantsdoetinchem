@@ -127,7 +127,7 @@
 				
 				<div class="flex flex-wrap flex-col sm:flex-row pt-12 my-12 sm:my-4">
 					
-					<div v-for="item in cases" class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1">
+					<div v-for="item in cases" class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1 mb-2">
 						<case :item="item"></case>
 					</div>
 					

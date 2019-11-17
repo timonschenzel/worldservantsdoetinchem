@@ -166,7 +166,7 @@ module.exports = class Bootstrap
 	 */
 	mapAnchorElements()
 	{
-		$(document).on('click', 'a:not([external]):not([target="_blank"])', e => {
+		$(document).on('click', 'a[href^="'+document.location.origin+'"]:not([external]):not([target="_blank"]):not([href^="mailto"]):not([href^="mailto"]),a[href^="\/"]', e => {
 			e.preventDefault();
 
 			let url = $(e.target).attr('href');
@@ -196,10 +196,7 @@ module.exports = class Bootstrap
 	{
 		window.createComponent = function(name, component)
 		{
-			console.log(name);
-			console.log(vm.$options.components);
 			Vue.component(name, component);
-			console.log(vm.$options.components);
 		};
 	}
 
@@ -255,7 +252,7 @@ module.exports = class Bootstrap
 				$('#app').html(response);
 			}
 
-			// window.scrollTo(0, 0);
+			window.scrollTo(0, 0);
 		});
 	}
 
