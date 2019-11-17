@@ -8,11 +8,10 @@
 	<slot name="hero"></slot>
     
 	<section class="bg-white py-8">
-		<div class="container max-w-5xl mx-auto px-8 text-black">
+		<div class="container max-w-5xl mx-auto text-black">
 			<slot></slot>
 		</div>
 	</section>
-	
 
     <!-- Change the colour #f8fafc to match the previous section colour -->
     <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

@@ -118,23 +118,9 @@
 
 	<template v-slot:actions>
 		<section class="bg-gray-100 py-8">
-			<div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
-		
-				<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Acties</h1>
-				<div class="w-full mb-4">	
-					<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-				</div>
-				
-				<div class="flex flex-wrap flex-col sm:flex-row pt-12 my-12 sm:my-4">
-					
-					<div v-for="item in cases" class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1 mb-2">
-						<case :item="item"></case>
-					</div>
-					
-				</div>
-				
+			<div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">				
+				<cases :cases="cases"></cases>
 			</div>
-
 		</section>
 	</template>
 </homepage-layout>

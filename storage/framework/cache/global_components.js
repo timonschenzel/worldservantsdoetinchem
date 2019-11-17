@@ -1,16 +1,20 @@
 module.exports = {'n-case': {
 	template: `
-		<div>
+		<div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-1 mb-2">
 			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-				<div class="p-8 text-xl font-bold text-center border-b-4">{{ item.title }}</div>
+				<div class="p-8 text-base font-bold text-center border-b-4">{{ item.title }}</div>
 				<ul class="w-full text-center text-sm">
 					<li class="border-b py-4"><img class="m-auto" :src="'http://www.worldservantsdoetinchem.nl/images/cases/' + item.images[0].filename" style="height: 200px;"></li>
-					<li class="border-b py-4"><i class="far fa-calendar"></i> {{ day }} <i class="far fa-clock"></i> {{ time }}</li>
+					<li class="border-b py-4">
+						<i class="far fa-calendar"></i> {{ day }} <i class="far fa-clock"></i> {{ time }}
+					</li>
 					<li v-if="item.location != 'Locatie'" class="border-b py-4"><i class="fa fa-map-marker-alt"></i> {{ item.location }}</li>
+					<li v-else-if="item.pass" class="border-b py-4"><i class="fa fa-repeat"></i> Doorlopende actie</li>
+					<li v-else class="border-b py-4">&nbsp;</li>
 				</ul>
 			</div>
 			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-				<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;{{ item.yield }} <span class="text-base">opbrengst {{ yieldText }}</span></div>
+				<div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">&euro;{{ item.yield }} <span class="text-base">{{ yieldText }}</span></div>
 				<div class="flex items-center justify-center">
 					<a :href="'/acties/' + item.uri" class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Meer informatie</a>
 				</div>
@@ -18,7 +22,7 @@ module.exports = {'n-case': {
 		</div>
 	`,
 	
-	props: ['item'],
+	props: ['item', 'completed'],
 	
 	ready()
 	{
@@ -37,6 +41,10 @@ module.exports = {'n-case': {
 		
 		time()
 		{
+			if (this.item.pass == 'true') {
+				return '';
+			}
+			
 			const moment = require('moment');
 			let date = new Date(this.item.date).toISOString();
 			let day = moment(date).format('D-M-Y');
@@ -46,18 +54,59 @@ module.exports = {'n-case': {
 		
 		yieldText()
 		{
-			if (this.item.pass == 'false') {
-				return '';
+			if (this.completed) {
+				return 'opbrengst';
 			}
 			
-			return 'tot nu toe';
+			return 'opbrengst tot nu toe';
+		}
+	}
+},'n-cases': {
+	template: `
+		<div>
+			<n-heading v-if="activeCases.length">Lopende acties</n-heading>
+			<div class="flex flex-wrap flex-col sm:flex-row my-12 sm:my-4">
+				<n-case v-for="item in activeCases" :item="item" :completed="false"></n-case>
+			</div>
+			
+			<n-heading v-if="passedCases.length" class="pt-8">Afgeronde acties</n-heading>
+			<div class="flex flex-wrap flex-col sm:flex-row my-12 sm:my-4">
+				<n-case v-for="item in passedCases" :item="item" :completed="true"></n-case>
+			</div>
+		</div>
+	`,
+	
+	props: ['cases'],
+	
+	mounted()
+	{
+		const moment = require('moment');
+
+		this.activeCases = this.cases.filter(item => {
+			let date = new Date(item.date).toISOString();
+			return moment(date).isAfter() || moment(date).isSame();
+		});
+		
+		this.passedCases = this.cases.filter(item => {
+			let date = new Date(item.date).toISOString();
+			return moment(date).isBefore();
+		});
+	},
+	
+	data()
+	{
+		return {
+			activeCases: [],
+			passedCases: [],
 		}
 	}
 },'n-heading': {
 	template: `
 		<div>
 			<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"><slot></slot></h1>
-			<div class="w-full mb-8"><div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div></div>
+			<div class="w-full mb-8">
+				<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+			</div>
 		</div>
 	`,
 },'n-nav': {
@@ -203,7 +252,7 @@ module.exports = {'n-case': {
 	template: `
 		<div>
 			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-				<div class="p-8 text-3xl font-bold text-center border-b-4">{{ item.title }}</div>
+				<div class="p-8 text-xl font-bold text-center border-b-4">{{ item.title }}</div>
 				<ul class="w-full text-center text-sm">
 					<li class="border-b py-4"><img class="m-auto" :src="'http://www.worldservantsdoetinchem.nl/images/news/' + item.images[0].filename" style="height: 200px;"></li>
 					<li class="border-b py-4"><i class="far fa-calendar"></i> {{ day }}</li>
@@ -317,13 +366,13 @@ module.exports = {'n-case': {
 	template: `
 		<div>
 			<div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-				<div class="p-8 text-3xl font-bold text-center border-b-4">{{ sponsor.title }}</div>
+				<div class="p-8 text-xl font-bold text-center border-b-4">{{ sponsor.title }}</div>
 				<ul class="w-full text-center text-sm">
 					<li class="border-b py-4"><img class="m-auto" :src="'http://www.worldservantsdoetinchem.nl/images/sponsors/' + sponsor.images[0].filename" style="height: 200px;"></li>
 				</ul>
 			</div>
 			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-				<div class="flex items-center justify-center">
+				<div class="flex items-center justify-center" v-if="sponsor.website">
 					<a :href="sponsor.website" target="_blank" class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Website</a>
 				</div>
 			</div>
