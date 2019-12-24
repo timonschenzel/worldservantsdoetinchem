@@ -17,7 +17,7 @@ module.exports = {
 
 	data() {
 		return {
-			current: 15000,
+			current: 22000,
 			target: 80000,
 		}
 	},
@@ -30,7 +30,7 @@ module.exports = {
 
 		progressPercentage()
 		{
-			return (this.current / this.target) * 100;
+			return parseFloat(((this.current / this.target) * 100).toFixed(1));
 		},
 
 		currentAmountFormatted()
