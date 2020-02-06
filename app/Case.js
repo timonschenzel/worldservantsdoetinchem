@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = class Case extends Model
 {
     async find(id, field = 'case_id')
@@ -68,6 +70,8 @@ module.exports = class Case extends Model
         delete item.language;
         
         return {...item, ...language};
+      }).sort((a, b) => {
+          return (moment(a.date) > moment(b.date)) ? 1 : -1;
       });
     }
 
@@ -107,6 +111,8 @@ module.exports = class Case extends Model
         delete item.language;
         
         return {...item, ...language};
+      }).sort((a, b) => {
+        return (moment(a.date) > moment(b.date)) ? 1 : -1;
       });
     }
     
@@ -146,6 +152,8 @@ module.exports = class Case extends Model
         delete item.language;
         
         return {...item, ...language};
+      }).sort((a, b) => {
+        return (moment(a.date) > moment(b.date)) ? 1 : -1;
       });
     }
 }

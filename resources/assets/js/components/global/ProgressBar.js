@@ -17,7 +17,7 @@ module.exports = {
 
 	data() {
 		return {
-			current: 22000,
+			current: 40000,
 			target: 80000,
 		}
 	},
