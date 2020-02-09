@@ -1,6 +1,6 @@
 <homepage-layout>
 	<template v-slot:hero>
-		<div class="mb-8 md:mb-0 pt-32">
+		<div class="mb-8 md:mb-0 pt-48">
 		
 			<div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 				<!--Left Col-->

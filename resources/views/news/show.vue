@@ -1,7 +1,7 @@
 <app-layout>
 
 	<template v-slot:hero>
-		<div class="pt-32">
+		<div class="pt-48">
 		
 			<div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 				<!--Right Col-->
