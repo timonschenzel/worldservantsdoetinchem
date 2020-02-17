@@ -345,7 +345,7 @@ module.exports = {'n-case': {
 
 	data() {
 		return {
-			current: 40000,
+			current: 49000,
 			target: 80000,
 		}
 	},
