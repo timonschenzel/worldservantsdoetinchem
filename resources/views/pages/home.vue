@@ -11,7 +11,7 @@
 				<!--Right Col-->
 				<div class="flex flex-col w-full md:w-3/5 justify-center items-start text-center md:text-left">
 					<h1 class="my-4 text-5xl font-bold leading-tight">World Servants Doetinchem</h1>
-					<p class="w-full leading-normal text-2xl mb-8">Op werkvakantie naar Ecuador in 2020</p>
+					<p class="w-full leading-normal text-2xl mb-8">Op werkvakantie naar Ecuador in 2021</p>
 				</div>
 			</div>
 		
@@ -21,7 +21,7 @@
 	<template v-slot:main-information>
 		<section class="bg-white border-b py-8">
 			<div class="container max-w-5xl mx-auto m-8">
-				<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Ecuador 2020</h1>
+				<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Ecuador 2021</h1>
 				<div class="w-full mb-4">	
 					<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
 				</div>
@@ -30,7 +30,7 @@
 					<div class="w-full sm:w-1/2 p-6 mt-16">
 						<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Bouwen aan verandering in Ecuador</h3>
 						<p class="text-gray-600 mb-8">
-							Onder het motto ‘Bouwen aan verandering’ gaat een groep uit Doetinchem in de zomer van 2020 op werkvakantie in Ecuador. De groep gaat bouwen voor en met een coöperatie van cacaoboeren.<br />
+							Onder het motto ‘Bouwen aan verandering’ gaat een groep uit Doetinchem in de zomer van 2021 op werkvakantie in Ecuador. De groep gaat bouwen voor en met een coöperatie van cacaoboeren.<br />
 							De diaconie en gemeenteleden van de Protestantse Gemeente Doetinchem ondersteunt dit ontwikkelingsproject van de organisatie World Servants.
 						</p>
 						

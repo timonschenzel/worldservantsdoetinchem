@@ -11,7 +11,7 @@ module.exports = class AboutController extends Controller
 		return view('about.show', {
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 			page,

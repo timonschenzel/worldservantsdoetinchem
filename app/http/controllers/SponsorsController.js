@@ -13,7 +13,7 @@ module.exports = class SponsorsController extends Controller
 			
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 		});

@@ -319,9 +319,12 @@ module.exports = {'n-case': {
 	template: `
 	<div>
 		<div class="bg-indigo-900 text-center py-4 lg:px-4">
-			<div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-				<span class="text-lg font-semibold mx-2 text-left flex-auto">Benefietconcert Boh Foi Toch en de Cry Me A River Band opnieuw uitgesteld. Tickets blijven geldig.</span>
-			</div>
+			<a href="https://www.worldservants.nl/actieplatform/update/verplaatsing_projecten_naar_2021" target="_blank" title="Voor meer informatie over de verplaatsing klik hier">
+				<div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+					<span class="text-lg font-semibold mx-2 text-left flex-auto">Ons project is verplaatst naar 28 juli 2021</span>
+					<svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+				</div>
+			</a>
 		</div>
 		<div id="thermometer" class="mb-4" style="background: none;">
 			<div class="track bg-white">
@@ -341,8 +344,8 @@ module.exports = {'n-case': {
 
 	data() {
 		return {
-			current: 49000,
-			target: 80000,
+			current: 52000,
+			target: 90000,
 		}
 	},
 

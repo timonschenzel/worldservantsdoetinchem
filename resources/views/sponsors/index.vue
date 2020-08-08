@@ -6,7 +6,7 @@
 				<!--Right Col-->
 				<div class="flex flex-col w-full md:w-3/5 justify-center items-start text-center md:text-left">
 					<h1 class="my-4 text-5xl font-bold leading-tight">World Servants Doetinchem</h1>
-					<p class="w-full leading-normal text-2xl mb-8">Op werkvakantie naar Ecuador in 2020</p>
+					<p class="w-full leading-normal text-2xl mb-8">Op werkvakantie naar Ecuador in 2021</p>
 				</div>
 			</div>
 		

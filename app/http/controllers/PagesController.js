@@ -6,7 +6,7 @@ module.exports = class PagesController extends Controller
 			cases: await Case.all(),
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 		});
@@ -22,7 +22,7 @@ module.exports = class PagesController extends Controller
 			shareWithLayout: false,
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 		});

@@ -9,7 +9,7 @@ module.exports = class NewsController extends Controller
 			shareWithLayout: false,
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 		});
@@ -24,7 +24,7 @@ module.exports = class NewsController extends Controller
 			shareWithLayout: false,
 			layoutData: {
 				title: 'World Servants Doetinchem',
-				slogan: 'Ecuador 2020',
+				slogan: 'Ecuador 2021',
 				items: await Page.menuItems(),
 			},
 		});
