@@ -17,12 +17,6 @@
 						<li class="mt-2 inline-block mr-2 md:block md:mr-0">
 							<a href="/ecuador" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Ecuador</a>
 						</li>
-						<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-							<a href="/cacao" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Cacao</a>
-						</li>
-						<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-							<a href="/fairtrade" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Fairtrade</a>
-						</li>
 					</ul>
 				</div>
 				<div class="flex-1">
