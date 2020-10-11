@@ -19,7 +19,12 @@
 	<div class="page-content" v-html="caseItem.content"></div>
 	
 	<div class="w-full mb-8"><div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div></div>
-	<div>
-		<img v-for="image in caseItem.case.images" :src="'http://www.worldservantsdoetinchem.nl/images/cases/' + image.filename" style="width: 300px;" />
+	<div class="flex flex-wrap">
+		<img
+			v-for="image in caseItem.case.images"
+			:src="'http://www.worldservantsdoetinchem.nl/images/cases/' + image.filename"
+			style="width: 300px;"
+			class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white p-2"
+		/>
 	</div>
 </app-layout>
