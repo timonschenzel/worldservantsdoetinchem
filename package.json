@@ -23,7 +23,7 @@
         "tests": "node node_modules/ava/cli.js jsunit/jsunit.js --tap | tap-nodue || true"
     },
     "devDependencies": {
-        "ava": "^0.22.0",
+        "ava": "^5.1.0",
         "cheerio": "^1.0.0-rc.3",
         "cross-env": "^5.2.1",
         "ouch": "^1.1.0",
